@@ -72,7 +72,7 @@ function AnimatedHeading({ text }: { text: string }) {
   return (
     <h2
       ref={ref}
-      className="text-3xl md:text-5xl font-bold text-center mb-4"
+      className="text-3xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
     >
       {text.split("").map((char, index) => (
         <motion.span
@@ -115,8 +115,8 @@ export default function TestimonialsSection() {
   }, []);
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-slate-950/50 to-background">
-      <div className="container mx-auto px-4">
+    <section id="testimonials" className="py-20 md:py-28 bg-gradient-to-b from-slate-950/50 to-background">
+      <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -125,15 +125,15 @@ export default function TestimonialsSection() {
           className="text-center mb-16"
         >
           <AnimatedHeading text="Khách hàng & Đối tác" />
-          <p className="text-xl text-muted-foreground mt-4">
+          <p className="text-lg md:text-xl text-muted-foreground mt-6 leading-relaxed">
             Khách hàng nói gì về chúng tôi
           </p>
         </motion.div>
 
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-600/5 to-purple-600/5 p-4">
           <div
             ref={scrollRef}
-            className="flex space-x-6 overflow-x-hidden"
+            className="flex space-x-6 md:space-x-8 overflow-x-hidden"
             style={{ scrollBehavior: 'auto' }}
           >
             {[...testimonials, ...testimonials].map((testimonial, index) => (
@@ -143,30 +143,30 @@ export default function TestimonialsSection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (index % testimonials.length) * 0.1 }}
-                className="flex-shrink-0 w-[400px] bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-all duration-300"
+                className="flex-shrink-0 w-[400px] bg-card border border-border rounded-xl p-6 md:p-8 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-3">
-                    <div className="text-4xl">{testimonial.avatar}</div>
+                    <div className="text-4xl md:text-5xl">{testimonial.avatar}</div>
                     <div>
-                      <h4 className="font-semibold">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                      <p className="text-xs md:text-sm text-muted-foreground">
                         {testimonial.position} - {testimonial.company}
                       </p>
                     </div>
                   </div>
-                  <div className="text-3xl">{testimonial.logo}</div>
+                  <div className="text-3xl md:text-4xl">{testimonial.logo}</div>
                 </div>
 
-                <div className="flex items-center mb-3">
+                <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
+                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
 
                 <div className="relative">
                   <Quote className="absolute -top-2 -left-2 w-8 h-8 text-primary/20" />
-                  <p className="text-sm text-muted-foreground pl-6">
+                  <p className="text-sm md:text-base text-muted-foreground pl-6 leading-relaxed">
                     {testimonial.content}
                   </p>
                 </div>

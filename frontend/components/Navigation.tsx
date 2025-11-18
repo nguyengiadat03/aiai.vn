@@ -43,28 +43,28 @@ export default function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-lg shadow-lg" : "bg-background/80 backdrop-blur-sm"
+        scrolled ? "bg-background/95 backdrop-blur-lg shadow-lg border-b border-border/50" : "bg-background/80 backdrop-blur-sm border-b border-border/20"
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center space-x-3">
             <motion.img
               whileHover={{ scale: 1.05, rotate: 5 }}
               src="/logo.png"
               alt="AI&AI Logo"
-              className="h-10 w-10 object-contain"
+              className="h-10 w-10 md:h-12 md:w-12 object-contain"
             />
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+              className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
             >
               AI&AI
             </motion.div>
           </Link>
 
-          <div className="hidden lg:flex items-center space-x-8">
-            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors duration-200">
               Trang chủ
             </Link>
             
@@ -94,19 +94,19 @@ export default function Navigation() {
               </NavigationMenuList>
             </NavigationMenu>
 
-            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors duration-200">
               Giới thiệu
             </Link>
-            <Link to="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/pricing" className="text-sm font-medium hover:text-primary transition-colors duration-200">
               Bảng giá
             </Link>
-            <Link to="/for-business" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/for-business" className="text-sm font-medium hover:text-primary transition-colors duration-200">
               Doanh nghiệp
             </Link>
-            <Link to="/blog" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/blog" className="text-sm font-medium hover:text-primary transition-colors duration-200">
               Blog
             </Link>
-            <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors">
+            <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors duration-200">
               Liên hệ
             </Link>
 
@@ -116,7 +116,7 @@ export default function Navigation() {
           </div>
 
           <button
-            className="lg:hidden"
+            className="lg:hidden p-2 hover:bg-accent rounded-lg transition-colors duration-200"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -133,26 +133,26 @@ export default function Navigation() {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-background/98 backdrop-blur-lg border-t border-border"
           >
-            <div className="container mx-auto px-4 py-4 space-y-4">
-              <Link to="/" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+            <div className="container mx-auto px-4 py-4 space-y-2">
+              <Link to="/" className="block py-3 px-3 text-sm font-medium hover:text-primary hover:bg-accent rounded-lg transition-colors duration-200">
                 Trang chủ
               </Link>
-              <Link to="/solutions" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+              <Link to="/solutions" className="block py-3 px-3 text-sm font-medium hover:text-primary hover:bg-accent rounded-lg transition-colors duration-200">
                 Sản phẩm
               </Link>
-              <Link to="/about" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+              <Link to="/about" className="block py-3 px-3 text-sm font-medium hover:text-primary hover:bg-accent rounded-lg transition-colors duration-200">
                 Giới thiệu
               </Link>
-              <Link to="/pricing" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+              <Link to="/pricing" className="block py-3 px-3 text-sm font-medium hover:text-primary hover:bg-accent rounded-lg transition-colors duration-200">
                 Bảng giá
               </Link>
-              <Link to="/for-business" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+              <Link to="/for-business" className="block py-3 px-3 text-sm font-medium hover:text-primary hover:bg-accent rounded-lg transition-colors duration-200">
                 Doanh nghiệp
               </Link>
-              <Link to="/blog" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+              <Link to="/blog" className="block py-3 px-3 text-sm font-medium hover:text-primary hover:bg-accent rounded-lg transition-colors duration-200">
                 Blog
               </Link>
-              <Link to="/contact" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+              <Link to="/contact" className="block py-3 px-3 text-sm font-medium hover:text-primary hover:bg-accent rounded-lg transition-colors duration-200">
                 Liên hệ
               </Link>
               <Button asChild className="w-full bg-gradient-to-r from-blue-600 to-purple-600">

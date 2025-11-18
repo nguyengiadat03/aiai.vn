@@ -57,34 +57,34 @@ const plans = [
 export default function Pricing() {
   return (
     <div className="pt-20">
-      <section className="py-20 bg-gradient-to-b from-background to-slate-950/50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-28 bg-gradient-to-b from-background to-slate-950/50">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Bảng giá &{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 Gói dịch vụ
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Chọn gói phù hợp với quy mô và nhu cầu của doanh nghiệp. Linh hoạt nâng cấp bất cứ lúc nào.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             {plans.map((plan, index) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative bg-card border rounded-2xl p-8 ${
-                  plan.popular ? 'border-primary shadow-2xl scale-105 z-10' : 'border-border'
+                className={`relative bg-card border rounded-2xl p-8 transition-all duration-300 ${
+                  plan.popular ? 'border-primary shadow-2xl scale-105 z-10 hover:shadow-3xl' : 'border-border hover:shadow-lg hover:scale-105'
                 }`}
               >
                 {plan.popular && (
@@ -94,21 +94,21 @@ export default function Pricing() {
                 )}
                 
                 <div className="mb-8">
-                  <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white">{plan.name}</h3>
+                  <p className="text-sm md:text-base text-muted-foreground mb-6 leading-relaxed">{plan.description}</p>
                   
-                  <div className="mb-2">
+                  <div className="mb-3">
                     {plan.price !== "Liên hệ" ? (
                       <>
-                        <span className="text-4xl font-bold">{plan.price}</span>
-                        <span className="text-muted-foreground ml-1">đ/{plan.period}</span>
+                        <span className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">{plan.price}</span>
+                        <span className="text-muted-foreground ml-2 text-lg">đ/{plan.period}</span>
                       </>
                     ) : (
-                      <span className="text-3xl font-bold">{plan.price}</span>
+                      <span className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">{plan.price}</span>
                     )}
                   </div>
                   {plan.price !== "Liên hệ" && (
-                    <p className="text-xs text-muted-foreground">Chưa bao gồm VAT</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">Chưa bao gồm VAT</p>
                   )}
                 </div>
                 
@@ -116,17 +116,17 @@ export default function Pricing() {
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start space-x-3">
                       <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm">{feature}</span>
+                      <span className="text-sm md:text-base leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 
                 <Button
                   asChild
-                  className={`w-full ${
+                  className={`w-full text-lg py-6 ${
                     plan.popular
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700'
-                      : ''
+                      ? 'bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl'
+                      : 'hover:bg-accent'
                   }`}
                   variant={plan.popular ? 'default' : 'outline'}
                   size="lg"

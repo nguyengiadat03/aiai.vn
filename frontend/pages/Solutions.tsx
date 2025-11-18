@@ -148,25 +148,25 @@ function SolutionCard({ solution, index }: { solution: typeof solutions[0], inde
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-card border border-border rounded-2xl p-8 hover:border-primary/50 transition-all duration-300"
+      className="group bg-card border border-border rounded-2xl p-8 md:p-10 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
     >
-      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${solution.gradient} mb-6`}>
+      <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${solution.gradient} mb-6 group-hover:scale-125 transition-transform duration-300 shadow-lg`}>
         <solution.icon className="w-8 h-8 text-white" />
       </div>
       
-      <h3 className="text-2xl font-bold mb-3">{solution.title}</h3>
-      <p className="text-muted-foreground mb-6">{solution.description}</p>
+      <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white transition-colors duration-300">{solution.title}</h3>
+      <p className="text-muted-foreground mb-6 group-hover:text-white/90 transition-colors duration-300 leading-relaxed">{solution.description}</p>
       
       <div className="space-y-3">
         {solution.features.map((feature, idx) => (
           <div key={idx} className="flex items-start space-x-3">
-            <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 bg-gradient-to-br ${solution.gradient} text-white rounded-full p-0.5`} />
-            <span className="text-sm text-muted-foreground">{feature}</span>
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5 text-green-500" />
+            <span className="text-sm md:text-base text-muted-foreground group-hover:text-white/90 transition-colors duration-300 leading-relaxed">{feature}</span>
           </div>
         ))}
       </div>
       
-      <Button asChild className="w-full mt-6" variant="outline">
+      <Button asChild className="w-full mt-8 text-lg py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300" variant="default">
         <Link to="/contact">Tư vấn ngay</Link>
       </Button>
     </motion.div>
@@ -179,21 +179,21 @@ export default function Solutions() {
 
   return (
     <div className="pt-20">
-      <section className="py-20 bg-gradient-to-b from-background to-slate-950/50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-28 bg-gradient-to-b from-background to-slate-950/50">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Sản phẩm &{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 Giải pháp
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Khám phá bộ giải pháp AI toàn diện, được thiết kế đặc biệt cho doanh nghiệp Việt Nam
             </p>
           </motion.div>
@@ -206,34 +206,34 @@ export default function Solutions() {
         </div>
       </section>
 
-      <section ref={plansRef} className="py-20">
-        <div className="container mx-auto px-4">
+      <section ref={plansRef} className="py-20 md:py-28 bg-gradient-to-b from-background to-slate-950/30">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={plansInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
               So sánh{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 Gói dịch vụ
               </span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Chọn gói phù hợp với quy mô và nhu cầu của doanh nghiệp bạn
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             {plans.map((plan, index) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, y: 30 }}
                 animate={plansInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`relative bg-card border rounded-2xl p-8 ${
-                  plan.popular ? 'border-primary shadow-xl scale-105' : 'border-border'
+                className={`relative bg-card border rounded-2xl p-8 transition-all duration-300 ${
+                  plan.popular ? 'border-primary shadow-2xl scale-105 z-10 hover:shadow-3xl' : 'border-border hover:shadow-lg hover:scale-105'
                 }`}
               >
                 {plan.popular && (
