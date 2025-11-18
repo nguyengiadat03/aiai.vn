@@ -58,36 +58,36 @@ export default function Contact() {
 
   return (
     <div className="pt-20">
-      <section className="py-20 bg-gradient-to-b from-background to-slate-950/50">
-        <div className="container mx-auto px-4">
+      <section className="py-20 md:py-28 bg-gradient-to-b from-background to-slate-950/50">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Liên hệ{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
                 với chúng tôi
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Chúng tôi sẵn sàng tư vấn và hỗ trợ bạn bất cứ lúc nào
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="text-2xl font-bold mb-6">Gửi tin nhắn cho chúng tôi</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8">Gửi tin nhắn cho chúng tôi</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Họ và tên *</label>
+                  <label className="block text-sm md:text-base font-medium mb-2 text-white">Họ và tên *</label>
                   <Input
                     required
                     value={formData.name}
@@ -97,7 +97,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Email *</label>
+                  <label className="block text-sm md:text-base font-medium mb-2 text-white">Email *</label>
                   <Input
                     required
                     type="email"
@@ -108,7 +108,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Số điện thoại</label>
+                  <label className="block text-sm md:text-base font-medium mb-2 text-white">Số điện thoại</label>
                   <Input
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -117,7 +117,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Công ty</label>
+                  <label className="block text-sm md:text-base font-medium mb-2 text-white">Công ty</label>
                   <Input
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -126,7 +126,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Dịch vụ quan tâm</label>
+                  <label className="block text-sm md:text-base font-medium mb-2 text-white">Dịch vụ quan tâm</label>
                   <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
                     <SelectTrigger>
                       <SelectValue placeholder="Chọn dịch vụ" />
@@ -143,7 +143,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Nội dung *</label>
+                  <label className="block text-sm md:text-base font-medium mb-2 text-white">Nội dung *</label>
                   <Textarea
                     required
                     rows={5}
@@ -156,7 +156,7 @@ export default function Contact() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  className="w-full text-lg py-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl transition-all duration-300"
                   size="lg"
                 >
                   {loading ? "Đang gửi..." : "Gửi tin nhắn"}
@@ -171,11 +171,11 @@ export default function Contact() {
               className="space-y-8"
             >
               <div>
-                <h2 className="text-2xl font-bold mb-6">Thông tin liên hệ</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-8">Thông tin liên hệ</h2>
                 
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center flex-shrink-0 group-hover:scale-125 transition-transform duration-300 shadow-lg">
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
                     <div>
