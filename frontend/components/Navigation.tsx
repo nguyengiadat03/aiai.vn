@@ -57,35 +57,42 @@ export default function Navigation() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 260, damping: 26 }}
+      className={`fixed top-0 left-1/2 z-50 w-full max-w-7xl -translate-x-1/2 transform transition-all duration-300 border border-transparent ${
         scrolled
-          ? "bg-background/95 backdrop-blur-lg shadow-lg"
+          ? "bg-background/95 backdrop-blur-lg shadow-lg border-primary/20"
           : "bg-background/80 backdrop-blur-sm"
-      }`}
+      } rounded-b-2xl`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="px-4">
+        <div className="flex h-16 items-center justify-between gap-4">
+          {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <motion.img
               whileHover={{ scale: 1.05, rotate: 5 }}
               src="/logo.png"
               alt="AI&AI Logo"
-              className="h-10 w-10 md:h-12 md:w-12 object-contain"
+              className="h-10 w-10 object-contain"
             />
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.03 }}
               className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
             >
               AI&AI
             </motion.div>
           </Link>
 
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Nav */}
+          <div className="hidden flex-1 items-center justify-center gap-8 lg:flex">
             <Link
               to="/"
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                isActive("/")
+                  ? "text-primary"
+                  : "text-foreground/80 hover:text-primary"
+              }`}
             >
               Trang chủ
             </Link>
@@ -125,52 +132,42 @@ export default function Navigation() {
               </NavigationMenuList>
             </NavigationMenu>
 
-            <Link
-              to="/about"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Giới thiệu
-            </Link>
-            <Link
-              to="/pricing"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Bảng giá
-            </Link>
-            <Link
-              to="/for-business"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Doanh nghiệp
-            </Link>
-            <Link
-              to="/blog"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Blog
-            </Link>
-            <Link
-              to="/contact"
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Liên hệ
-            </Link>
-
-            <Button
-              asChild
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-            >
-              <Link to="/contact">Đăng ký Demo</Link>
-            </Button>
+            {navLinks
+              .filter((link) => link.to !== "/")
+              .map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={`text-sm font-medium transition-colors ${
+                    isActive(link.to)
+                      ? "text-primary"
+                      : "text-foreground/80 hover:text-primary"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
           </div>
 
-          <button
-            className="lg:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* CTA + Mobile Toggle */}
+          <div className="flex items-center gap-3">
+            <div className="hidden lg:block">
+              <Button
+                asChild
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-sm"
+              >
+                <Link to="/contact">Đăng ký Demo</Link>
+              </Button>
+            </div>
+
+            <button
+              className="inline-flex items-center justify-center rounded-md p-1 lg:hidden"
+              onClick={() => setIsOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -183,52 +180,37 @@ export default function Navigation() {
             exit={{ opacity: 0, height: 0 }}
             className="border-t border-border bg-background/98 backdrop-blur-lg lg:hidden"
           >
-            <div className="container mx-auto px-4 py-4 space-y-4">
+            <div className="px-4 py-4 space-y-2">
               <Link
                 to="/"
-                className="block py-2 text-sm font-medium hover:text-primary transition-colors"
+                className="block py-2 text-sm font-medium transition-colors hover:text-primary"
               >
                 Trang chủ
               </Link>
+
+              {/* Mobile: Sản phẩm */}
               <Link
                 to="/solutions"
-                className="block py-2 text-sm font-medium hover:text-primary transition-colors"
+                className="block py-2 text-sm font-medium transition-colors hover:text-primary"
               >
                 Sản phẩm
               </Link>
-              <Link
-                to="/about"
-                className="block py-2 text-sm font-medium hover:text-primary transition-colors"
-              >
-                Giới thiệu
-              </Link>
-              <Link
-                to="/pricing"
-                className="block py-2 text-sm font-medium hover:text-primary transition-colors"
-              >
-                Bảng giá
-              </Link>
-              <Link
-                to="/for-business"
-                className="block py-2 text-sm font-medium hover:text-primary transition-colors"
-              >
-                Doanh nghiệp
-              </Link>
-              <Link
-                to="/blog"
-                className="block py-2 text-sm font-medium hover:text-primary transition-colors"
-              >
-                Blog
-              </Link>
-              <Link
-                to="/contact"
-                className="block py-2 text-sm font-medium hover:text-primary transition-colors"
-              >
-                Liên hệ
-              </Link>
+
+              {navLinks
+                .filter((link) => link.to !== "/")
+                .map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="block py-2 text-sm font-medium transition-colors hover:text-primary"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+
               <Button
                 asChild
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600"
+                className="mt-2 w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
               >
                 <Link to="/contact">Đăng ký Demo</Link>
               </Button>
